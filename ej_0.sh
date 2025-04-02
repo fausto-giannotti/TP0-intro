@@ -9,7 +9,7 @@ sumar_energias() {
     fi
 
     # usamos regexs para asegurarnos que sean numeros
-    #chequea que ambos sean números
+    # chequea que ambos sean números
 
     if ! [[ "$1" =~ ^[0-9]+$  ]] || ! [[ "$2" =~ ^[0-9]+$  ]]; then
         echo "las energías no son números válidos"
