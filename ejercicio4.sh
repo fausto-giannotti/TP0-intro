@@ -11,7 +11,7 @@ function contador_cold {
     # -i ignora case, -w coincide solo con palabras completas 
     # -o separa cada coincidencia en una nueva linea (cada línea resultante es "cold")
     # la pipeline | reedirige las lineas a wc -l (wc = word count, l = lines)
-    # que cuenta el número de estas
+    # que cuenta el número de estas = núm de apariciones de "cold"
 
     apariciones_cold=$(grep -i -w -o "cold" "$1" | wc -l)
     
