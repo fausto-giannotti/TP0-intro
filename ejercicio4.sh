@@ -2,7 +2,7 @@
 
 function contador_cold {
     
-    # chequeamos si el archivo es existe y válido
+    # chequeamos si el archivo es existe y es válido
     if ! [ -f $1 ] || [ -z "$1"] ; then
         echo "ingresar un archivo válido"
         exit 1
