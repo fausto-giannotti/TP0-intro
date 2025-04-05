@@ -49,5 +49,4 @@ function posicion_en_secuencia_fibonacci {
 
 }
 
-
 posicion_en_secuencia_fibonacci $1
