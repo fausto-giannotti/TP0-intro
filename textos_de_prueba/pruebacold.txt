@@ -5,3 +5,4 @@ coLD
 _CoLd
 
 numero de apariciones validas = 5
+karin
