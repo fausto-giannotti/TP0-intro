@@ -9,7 +9,6 @@ function contador_archivos_con_karin {
         exit 1
     fi
 
-
     # -R busca recursivamente en el path ingresado 
     # (dado un path, busca en cada dir, en cada archivo y linea por linea)
     # -i ignora case, -l muestra nombre de archivos que contienen patrón
@@ -17,10 +16,10 @@ function contador_archivos_con_karin {
     # | reedirige el resultado de grep y wc cuenta numero de lineas (1 x archivo listado)
 
 
-    contador_karins=$(grep -Ril 'karin' $1 | wc -l)
+    contador_karins=$(grep -Ril 'karin' "$1" | wc -l)
     echo "$contador_karins"
 
 }
 
-contador_archivos_con_karin $1
+contador_archivos_con_karin "$1"
 

@@ -2,6 +2,13 @@
 
 function suma_semillas {
 
+    #si no se ingresa ningun argumento, salta mensaje error
+    if [ $# -eq 0 ]; then
+        echo "No ingresaste ninguna semilla"
+        exit 1
+    fi
+
+
     semillas_sumadas=0
 
    # $@ representa un número n de inputs (sirve para recibir cualquier cantidad de ellos)
@@ -23,7 +30,7 @@ function suma_semillas {
 
     done
     
-    echo "la suma de las semillas es de $semillas_sumadas"
+    echo "$semillas_sumadas"
 }
 
 suma_semillas $@ # permite ingresar un numero n de inputs 

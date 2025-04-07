@@ -21,7 +21,7 @@ function posicion_en_secuencia_fibonacci {
     
 
     lista_secuencia_fibonacci=(0 1) # 0 y 1 son los 2 primeros valores de la secuencia
-    indice=1 # corresponde al índice del último valor de la secuencia (este caso el 1) 
+    indice=1 # corresponde al índice del último valor de la secuencia (en este caso el 1) 
     nuevo_valor=0
     
     # si input es 0, devolver 1 (n° 0); debido a que 0 < ultimo valor de la secuencia
@@ -30,23 +30,23 @@ function posicion_en_secuencia_fibonacci {
         exit 0 # porgrama termina sin errores
     fi
 
-
-    while [ "${lista_secuencia_fibonacci[$(( indice ))]}" -le "$1" ]; do 
+    # mientras ultimo valor de la secuencia sea menor al input, se ejecuta
+    while [ "${lista_secuencia_fibonacci[$indice]}" -le "$1" ]; do 
 
         # nuevo_valor = suma de los 2 anteriores (i) y (i-1)
+        # como los 2 primeros indices ya estan definidos (0 y 1) no puede haber error
         nuevo_valor=$(( lista_secuencia_fibonacci[indice] + lista_secuencia_fibonacci[indice-1] ))
+        
+        # se agrega el nuevo valor a la secuencia
         lista_secuencia_fibonacci+=("$nuevo_valor")
-
-        # si nuevo valor agregado a la secuencia es mayor/igual al input, devolver posición y valor 
-        if [ "$nuevo_valor" -gt "$1" ]; then      
-            echo "Respuesta: $((indice+2)) (n° $nuevo_valor)"
-            break
-        fi
-
+ 
         (( indice++ ))
 
     done
 
+    # imprime indice +1 (así empieza desde 1 y no desde 0)
+    # y próximo núm en la secuencia mayor al input  
+    echo "Respuesta: $((indice + 1)) (n° ${lista_secuencia_fibonacci[$indice]})"
 }
 
 posicion_en_secuencia_fibonacci $1
