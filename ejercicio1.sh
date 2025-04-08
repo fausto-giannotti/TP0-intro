@@ -1,13 +1,12 @@
 #!/bin/bash
 
-function suma_semillas {
+function suma_semillas() {
 
     #si no se ingresa ningun argumento, salta mensaje error
     if [ $# -eq 0 ]; then
         echo "No ingresaste ninguna semilla"
         exit 1
     fi
-
 
     semillas_sumadas=0
 

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-function posicion_en_secuencia_fibonacci {
-    
-    # chequea que input no sea vacío 
+function posicion_en_secuencia_fibonacci() {
+
     if [ -z "$1" ]; then   
         echo "hay que ingresar 1 número"
         exit 1 
@@ -13,40 +12,34 @@ function posicion_en_secuencia_fibonacci {
         echo "input no es un número entero positivo"
         exit 1
     fi
-    
-    # almacenamos los valores de la secuencia de fibonacci en una lista
-    # si $1 es mayor o igual que el ultimo valor de la secuencia, devolvemos dicho valor y su indice 
-    # si $1 es menor, sumamos los dos ultimos valores de la secuencia y los agregamos a la esta
-    # tambíen sumamos 1 al índice
-    
 
-    lista_secuencia_fibonacci=(0 1) # 0 y 1 son los 2 primeros valores de la secuencia
-    indice=1 # corresponde al índice del último valor de la secuencia (en este caso el 1) 
-    nuevo_valor=0
-    
-    # si input es 0, devolver 1 (n° 0); debido a que 0 < ultimo valor de la secuencia
-    if [ "$1" -eq 0 ]; then
-        echo "Respuesta: 2 (n° 1)"
-        exit 0 # porgrama termina sin errores
-    fi
+    inp=$1
+    n_menor=0
+    n_mayor=1
+    indice=2 # dado que las posiciones son (1, 2, ..., n) y dado que la menor pos. posible es 2 (para $1 = 0) 
 
-    # mientras ultimo valor de la secuencia sea menor al input, se ejecuta
-    while [ "${lista_secuencia_fibonacci[$indice]}" -le "$1" ]; do 
-
-        # nuevo_valor = suma de los 2 anteriores (i) y (i-1)
-        # como los 2 primeros indices ya estan definidos (0 y 1) no puede haber error
-        nuevo_valor=$(( lista_secuencia_fibonacci[indice] + lista_secuencia_fibonacci[indice-1] ))
+    # while se ejecuta mientras que el input sea mayor o igual que el ultimo núm de la secuencia
+    while [ "$n_mayor" -le "$inp" ]; do
         
-        # se agrega el nuevo valor a la secuencia
-        lista_secuencia_fibonacci+=("$nuevo_valor")
- 
+        if [ "$n_menor" -eq 0 ]; then
+            n_menor=1
+            (( indice++ ))
+        fi
+
+        suma=$(( n_menor + n_mayor ))
+
+        # se avanza una posicion en la secuencia
+        # n_menor pasa a ser n_mayor
+        # n_mayor pasa a ser la suma de los 2 últimos números de la secuencia
+        
+        n_menor=$n_mayor
+        n_mayor=$suma 
+
         (( indice++ ))
 
     done
 
-    # imprime indice +1 (así empieza desde 1 y no desde 0)
-    # y próximo núm en la secuencia mayor al input  
-    echo "Respuesta: $((indice + 1)) (n° ${lista_secuencia_fibonacci[$indice]})"
+    echo "$indice"
 }
 
 posicion_en_secuencia_fibonacci $1

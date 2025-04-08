@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function num_archivos_y_dirs_en_path {
+function num_archivos_y_dirs_en_path() {
 
     num_archivos_o_dir=0
     
@@ -11,8 +11,8 @@ function num_archivos_y_dirs_en_path {
         exit 1
     fi
 
-    # búcle para sumar 1 por cada archivo/dir en path dado
-    for archivo_o_dir in $(ls "$1"); do 
+    # -A también permite contar los archivos ocultos (excepto . y ..)
+    for archivo_o_dir in $(ls -A "$1"); do 
         (( num_archivos_o_dir++ ))
     done
 
